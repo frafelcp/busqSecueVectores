@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 
-//Realice un algoritmo que dados N nombres de personas en un vector, 
-//Muestre si Un nombre de una persona dada se encuentra en el listado
+/**
+ *
+ * Leer 10 enteros.
+ * Llenar un vector.
+ * leer un numero n.
+ * Buscar n en el vector.
+ * mostrar mensaje si se encontro o no
+ */
 
 package busqSecuenVectores;
 
@@ -18,50 +24,36 @@ import javax.swing.JOptionPane;
  */
 public class busqSecueVectores {
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        int numDelete;//numero a buscar y eliminar
+        int vec[] = new int[10];//vector numeros con tamaño constante
         
-        //variables
-        String [] listNombres;
-        int cantNombres;        
-        
-        System.out.println("CREAR LISTA DE NOMBRES");
-        System.out.println("------------------------------");
-        
-        //ingresamos a cantidad de nombres que va guardar la lista
-        cantNombres = Integer.parseInt(JOptionPane.showInputDialog("Ingrese "
-                + "cuantos nombres desea guardar en una lista"));
-        
-        listNombres = new String[cantNombres];
-        
-//        System.out.println("------------------------------");
-        
-        //agregar nombres a la lista
-        System.out.println("Agregar nombres a la lista");
-        for (int i = 0; i < listNombres.length; i++) {
-            System.out.println((i+1)+".Agrega un nombre");
-            listNombres[i] = entrada.next();
+        //llenamos el vector
+        JOptionPane.showMessageDialog(null, "Ingrese lo elementos del vector");
+        for (int i = 0; i < 10; i++) {
+            vec[i] = Integer.parseInt(JOptionPane.showInputDialog((i+1)+""
+                    + ". Digite un numero"));
         }
         
-        //variables
-        int inicio = 0;
-        String buscNombre;
+        //solicitamos el numero a buscar y eliminar
+        numDelete = Integer.parseInt(JOptionPane.showInputDialog("Ingresa "
+                + "el numero a buscar"));
         
-        //ingresar un nombre para buscarlo
-        buscNombre = String.valueOf(JOptionPane.showInputDialog("Ingresar nombre"
-                + " a buscar en la lista"));
-        
-        //busqueda del nombre ingresado
-        while (!listNombres[inicio].equals(buscNombre)) {            
-            inicio++;
+        //buscamos el numero ingresado
+        int i = 0;
+        while (i < 10 && vec[i] < numDelete) {           
+            i++;
         }
         
-        //comprobamos el numero buscado
-        if (inicio < listNombres.length) {
-            System.out.println("El nombre "+listNombres[inicio]+" fue encontrado "
-                    + "en la posicion: "+(inicio));
+        //imprimimos el numero a buscar
+        if (i==10) {//si vector fue recorrdio sin encotrar el numero
+            JOptionPane.showMessageDialog(null, "Numero no encontrado");
         } else {
-            System.out.println("El nombre "+buscNombre+"no fue encontrado en "
-                    + "la lista");
+            if (vec[i] == numDelete) {
+                JOptionPane.showMessageDialog(null, "Numero encotrado en "
+                        + "la posicion: "+i);
+            } else {
+                JOptionPane.showMessageDialog(null, "Numero no encontrado");
+            }
         }
     }
 }
